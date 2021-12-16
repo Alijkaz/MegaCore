@@ -3,6 +3,7 @@ package ir.jeykey.megacore;
 import ir.jeykey.megacore.config.ConfigManager;
 import ir.jeykey.megacore.events.InventoryClick;
 import ir.jeykey.megacore.gui.MegaGUI;
+import ir.jeykey.megacore.utils.BungeeChannelApi;
 import ir.jeykey.megacore.utils.Common;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -18,7 +19,8 @@ import java.util.HashMap;
 public abstract class MegaPlugin extends JavaPlugin {
         @Getter public static JavaPlugin instance;
         public static HashMap<String, MegaGUI> registeredGuis = new HashMap<>();
-        public static ConfigManager configManager;
+        @Getter public static ConfigManager configManager;
+        @Getter public static BungeeChannelApi bungeeApi;
 
         @Override
         public void onEnable() {
@@ -35,6 +37,9 @@ public abstract class MegaPlugin extends JavaPlugin {
 
                 // Setting up config manager
                 configManager = new ConfigManager(this);
+
+                // Setting up bungee channel API
+                bungeeApi = BungeeChannelApi.of(this);
 
                 // Registering core events
                 register(new InventoryClick());
