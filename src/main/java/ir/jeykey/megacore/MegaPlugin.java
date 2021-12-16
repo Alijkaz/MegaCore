@@ -20,7 +20,7 @@ import java.util.HashMap;
 public abstract class MegaPlugin extends JavaPlugin {
         @Getter public static JavaPlugin instance;
         public static HashMap<String, MegaGUI> registeredGuis = new HashMap<>();
-        @Getter public static ConfigManager<? extends Configurable> configManager;
+        @Getter public static ConfigManager configManager;
         @Getter public static BungeeChannelApi bungeeApi;
 
         @Override
@@ -32,7 +32,7 @@ public abstract class MegaPlugin extends JavaPlugin {
                 instance = this;
 
                 // Setting up config manager
-                configManager = new ConfigManager<>(this);
+                configManager = new ConfigManager(this);
 
                 onPluginEnable();
 
