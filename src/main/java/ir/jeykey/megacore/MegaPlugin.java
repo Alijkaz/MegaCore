@@ -1,5 +1,6 @@
 package ir.jeykey.megacore;
 
+import ir.jeykey.megacore.config.ConfigManager;
 import ir.jeykey.megacore.events.InventoryClick;
 import ir.jeykey.megacore.gui.MegaGUI;
 import ir.jeykey.megacore.utils.Common;
@@ -17,6 +18,7 @@ import java.util.HashMap;
 public abstract class MegaPlugin extends JavaPlugin {
         @Getter public static JavaPlugin instance;
         public static HashMap<String, MegaGUI> registeredGuis = new HashMap<>();
+        public static ConfigManager configManager;
 
         @Override
         public void onEnable() {
@@ -30,6 +32,9 @@ public abstract class MegaPlugin extends JavaPlugin {
 
                 // Disabling the plugin if it's disabled in the onPluinEnable
                 if (!isEnabled()) return;
+
+                // Setting up config manager
+                configManager = new ConfigManager(this);
 
                 // Registering core events
                 register(new InventoryClick());
