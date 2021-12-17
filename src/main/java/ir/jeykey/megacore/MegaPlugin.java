@@ -100,7 +100,15 @@ public abstract class MegaPlugin extends JavaPlugin {
         public abstract void onPluginDisable();
 
         public static void disablePlugin(String... messages) {
-                Common.log(messages);
+                Common.logPrefixed(messages);
                 Bukkit.getPluginManager().disablePlugin(instance);
+        }
+
+        /**
+         * Plugin prefix
+         * @return Main plugin prefix (includes color codes) that will be shown before plugin messages
+         */
+        public static String getPrefix() {
+              return "";
         }
 }

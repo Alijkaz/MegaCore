@@ -1,5 +1,6 @@
 package ir.jeykey.megacore.utils;
 
+import ir.jeykey.megacore.MegaPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -32,8 +33,8 @@ public class Common {
                 Bukkit.getServer().getConsoleSender().sendMessage(colorize(messages));
         }
 
-        public static void logPrefixed(String prefix, String ... messages) {
-                for(String message : messages) log(prefix + message);
+        public static void logPrefixed(String ... messages) {
+                for(String message : messages) log(MegaPlugin.getPrefix() + message);
         }
 
         public static String repeat(String string, int amount) {
@@ -44,14 +45,11 @@ public class Common {
                 return String.join(separator, Collections.nCopies(amount, string));
         }
 
-        public static void send(CommandSender sender, String string) {
-                send(sender, string, null);
-        }
 
-        public static void send(CommandSender sender, String string, String prefix) {
+        public static void send(CommandSender sender, String string) {
                 string = colorize(string);
 
-                if (prefix != null) string = prefix + string;
+                string = MegaPlugin.getPrefix() + string;
 
                 sender.sendMessage(string);
         }
