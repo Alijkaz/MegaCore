@@ -7,6 +7,7 @@ import ir.jeykey.megacore.gui.MegaGUI;
 import ir.jeykey.megacore.utils.BungeeChannelApi;
 import ir.jeykey.megacore.utils.Common;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,6 +23,10 @@ public abstract class MegaPlugin extends JavaPlugin {
         public static HashMap<String, MegaGUI> registeredGuis = new HashMap<>();
         @Getter public static ConfigManager configManager;
         @Getter public static BungeeChannelApi bungeeApi;
+        /**
+         * Plugin prefix - Main plugin prefix (includes color codes) that will be shown before plugin messages
+         */
+        @Getter @Setter public static String prefix = "";
 
         @Override
         public void onEnable() {
@@ -104,11 +109,4 @@ public abstract class MegaPlugin extends JavaPlugin {
                 Bukkit.getPluginManager().disablePlugin(instance);
         }
 
-        /**
-         * Plugin prefix
-         * @return Main plugin prefix (includes color codes) that will be shown before plugin messages
-         */
-        public static String getPrefix() {
-              return "";
-        }
 }
