@@ -1,9 +1,8 @@
 package ir.jeykey.megacore;
 
 import ir.jeykey.megacore.config.ConfigManager;
-import ir.jeykey.megacore.config.Configurable;
 import ir.jeykey.megacore.events.InventoryClick;
-import ir.jeykey.megacore.gui.MegaGUI;
+import ir.jeykey.megacore.gui.MegaGui;
 import ir.jeykey.megacore.utils.BungeeChannelApi;
 import ir.jeykey.megacore.utils.Common;
 import lombok.Getter;
@@ -20,7 +19,7 @@ import java.util.HashMap;
 
 public abstract class MegaPlugin extends JavaPlugin {
         @Getter public static JavaPlugin instance;
-        public static HashMap<String, MegaGUI> registeredGuis = new HashMap<>();
+        public static HashMap<String, MegaGui> registeredGuis = new HashMap<>();
         @Getter public static ConfigManager configManager;
         @Getter public static BungeeChannelApi bungeeApi;
         /**

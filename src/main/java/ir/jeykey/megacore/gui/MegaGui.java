@@ -11,14 +11,16 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 
-public abstract class MegaGUI {
+public abstract class MegaGui {
         @Getter private final String name;
+        @Getter private final Player owner;
         @Getter private final Inventory inventory;
         @Getter private final HashMap<ItemStack, HandleEvent> itemHandlers = new HashMap<>();
 
-        public MegaGUI(String name, int size) {
+        public MegaGui(String name, int size, Player owner) {
                 this.name = Common.colorize(name);
                 this.inventory = Bukkit.createInventory(null, size, getName());
+                this.owner = owner;
         }
 
         public abstract void setup();
