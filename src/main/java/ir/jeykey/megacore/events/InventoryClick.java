@@ -3,7 +3,6 @@ package ir.jeykey.megacore.events;
 import ir.jeykey.megacore.MegaPlugin;
 import ir.jeykey.megacore.gui.HandleEvent;
 import ir.jeykey.megacore.gui.MegaGui;
-import jdk.internal.org.objectweb.asm.Handle;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,7 +10,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class InventoryClick implements Listener {
