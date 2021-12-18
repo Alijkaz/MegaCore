@@ -48,10 +48,14 @@ public abstract class MegaGui {
                 place(i, item.getItemStack());
         }
 
-        public void open(Player p) {
+        public void open() {
                 setup();
                 register();
-                p.openInventory(getInventory());
+                getOwner().openInventory(getInventory());
+        }
+
+        public void close() {
+                getOwner().closeInventory();
         }
 
         public void register() {
@@ -59,4 +63,5 @@ public abstract class MegaGui {
                         MegaPlugin.registeredGuis.put(name, this);
                 }
         }
+
 }
