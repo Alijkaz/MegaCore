@@ -4,6 +4,7 @@ import ir.jeykey.megacore.utils.Common;
 import ir.jeykey.megacore.utils.MegaItem;
 import ir.jeykey.megacore.MegaPlugin;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -16,6 +17,7 @@ public abstract class MegaGui {
         @Getter private final Player owner;
         @Getter private final Inventory inventory;
         @Getter private final HashMap<ItemStack, HandleEvent> itemHandlers = new HashMap<>();
+        @Getter @Setter private ItemStack filler;
 
         public MegaGui(String name, int size, Player owner) {
                 this.name = Common.colorize(name);

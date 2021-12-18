@@ -24,6 +24,11 @@ public class InventoryClick implements Listener {
                         Player player = entry.getKey();
                         MegaGui gui = entry.getValue();
 
+                        if (gui.getFiller() != null) {
+                                if (event.getCurrentItem().isSimilar(gui.getFiller())) {
+                                        event.setCancelled(true);
+                                }
+                        }
                         if (!MegaPlugin.getRegisteredGuis().containsKey(player))
                                 break;
                         if (!event.getInventory().getName().equalsIgnoreCase(gui.getName()))
