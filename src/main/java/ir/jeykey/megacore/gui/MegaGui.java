@@ -66,6 +66,8 @@ public abstract class MegaGui {
         public void register() {
                 if (!MegaPlugin.getRegisteredGuis().containsKey(getOwner())) {
                         MegaPlugin.getRegisteredGuis().put(getOwner(), this);
+                } else {
+                        MegaPlugin.getRegisteredGuis().replace(getOwner(), this);
                 }
         }
 
