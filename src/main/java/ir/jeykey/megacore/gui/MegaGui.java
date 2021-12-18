@@ -40,12 +40,16 @@ public abstract class MegaGui {
                 itemHandlers.put(itemStack, handleEvent);
         }
 
+        public void place(int i, MegaItem item) {
+                place(i, item.getItemStack());
+        }
+
         public void place(int i, ItemStack itemStack) {
                 getInventory().setItem(i, itemStack);
         }
 
-        public void place(int i, MegaItem item) {
-                place(i, item.getItemStack());
+        public ItemStack getSlot(int i) {
+                return getInventory().getItem(i);
         }
 
         public void open() {
