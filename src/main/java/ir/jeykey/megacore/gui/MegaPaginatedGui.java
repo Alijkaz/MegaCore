@@ -12,7 +12,7 @@ public abstract class MegaPaginatedGui extends MegaGui {
 
         public MegaPaginatedGui(String name, int size, Player owner) {
                 super(name, size, owner);
-                setPage(0);
+                setPage(1);
         }
 
         public boolean nextPage() {
