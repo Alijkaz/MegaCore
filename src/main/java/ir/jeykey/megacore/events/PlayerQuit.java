@@ -9,5 +9,6 @@ public class PlayerQuit implements Listener {
     @EventHandler
     public void handleQuit(PlayerQuitEvent e) {
         MegaPaginatedGui.getPagination().remove(e.getPlayer());
+
     }
 }

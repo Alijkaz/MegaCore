@@ -56,11 +56,12 @@ public abstract class MegaGui {
 
         public void close() {
                 getOwner().closeInventory();
+                MegaPlugin.getRegisteredGuis().remove(getOwner());
         }
 
         public void register() {
-                if (!MegaPlugin.registeredGuis.containsKey(name)) {
-                        MegaPlugin.registeredGuis.put(name, this);
+                if (!MegaPlugin.getRegisteredGuis().containsKey(getOwner())) {
+                        MegaPlugin.getRegisteredGuis().put(getOwner(), this);
                 }
         }
 

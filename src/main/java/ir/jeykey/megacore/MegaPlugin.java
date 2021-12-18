@@ -2,6 +2,7 @@ package ir.jeykey.megacore;
 
 import ir.jeykey.megacore.config.ConfigManager;
 import ir.jeykey.megacore.events.InventoryClick;
+import ir.jeykey.megacore.events.PlayerQuit;
 import ir.jeykey.megacore.gui.MegaGui;
 import ir.jeykey.megacore.utils.BungeeChannelApi;
 import ir.jeykey.megacore.utils.Common;
@@ -11,6 +12,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandMap;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,7 +21,7 @@ import java.util.HashMap;
 
 public abstract class MegaPlugin extends JavaPlugin {
         @Getter public static JavaPlugin instance;
-        public static HashMap<String, MegaGui> registeredGuis = new HashMap<>();
+        @Getter private static final HashMap<Player, MegaGui> registeredGuis = new HashMap<>();
         @Getter public static ConfigManager configManager;
         @Getter public static BungeeChannelApi bungeeApi;
         /**
@@ -48,6 +50,7 @@ public abstract class MegaPlugin extends JavaPlugin {
 
                 // Registering core events
                 register(new InventoryClick());
+                register(new PlayerQuit());
 
                 // Finished loading plugin millis
                 long end = System.currentTimeMillis();
