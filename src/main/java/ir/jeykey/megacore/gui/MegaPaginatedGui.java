@@ -9,6 +9,8 @@ import java.util.HashMap;
 
 public abstract class MegaPaginatedGui extends MegaGui {
         @Getter private static final HashMap<Player, Integer> pagination = new HashMap<>();
+        @Getter @Setter private int itemsCount = 0;
+        @Getter @Setter private int maxItemsPerPage = 0;
 
         public MegaPaginatedGui(String name, int size, Player owner) {
                 super(name, size, owner);
@@ -40,5 +42,23 @@ public abstract class MegaPaginatedGui extends MegaGui {
                 return pagination.get(getOwner());
         }
 
-        public abstract int getMaxItemsPerPage();
+        public int getLastPage() {
+                return (int) Math.ceil((float) getItemsCount() / (float) getMaxItemsPerPage());
+        }
+
+        public boolean isFirstPage() {
+                return getPage() == 1;
+        }
+
+        public boolean isLastPage() {
+                return getPage() == getLastPage();
+        }
+
+        public int getOffset() {
+                return (getPage() * getMaxItemsPerPage()) - (getMaxItemsPerPage() - 1);
+        }
+
+        public int getLimit() {
+                return getPage() * getMaxItemsPerPage();
+        }
 }
