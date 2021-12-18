@@ -2,6 +2,8 @@ package ir.jeykey.megacore.events;
 
 import ir.jeykey.megacore.MegaPlugin;
 import ir.jeykey.megacore.gui.HandleEvent;
+import ir.jeykey.megacore.gui.MegaGui;
+import jdk.internal.org.objectweb.asm.Handle;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,6 +12,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class InventoryClick implements Listener {
         /**
@@ -18,24 +21,25 @@ public class InventoryClick implements Listener {
          */
         @EventHandler
         protected void onGUIClickEvent(InventoryClickEvent event) {
-                MegaPlugin.getRegisteredGuis().forEach((player, gui) -> {
+                outer:
+                for (Map.Entry<Player, MegaGui> entry: MegaPlugin.getRegisteredGuis().entrySet()) {
+                        Player player = entry.getKey();
+                        MegaGui gui = entry.getValue();
+
                         if (!MegaPlugin.getRegisteredGuis().containsKey(player))
-                                return;
+                                break;
                         if (!event.getInventory().getName().equalsIgnoreCase(gui.getName()))
-                                return;
+                                break;
                         if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR)
-                                return;
+                                break;
 
-                        // We clone the map so we don't face illegal modifications / concurrent modifications error
-                        HashMap<ItemStack, HandleEvent> itemHandlersClone = new HashMap<>(gui.getItemHandlers());
-
-                        itemHandlersClone.forEach((itemStack, handler) -> {
-                                if (itemStack.isSimilar(event.getCurrentItem())) {
+                        for (Map.Entry<ItemStack, HandleEvent> itemHandler: gui.getItemHandlers().entrySet()) {
+                                if (itemHandler.getKey().isSimilar(event.getCurrentItem())) {
                                         event.setCancelled(true);
-                                        handler.handle((Player) event.getWhoClicked(), event.getCurrentItem(), event.getSlot(), event.getClick());
+                                        itemHandler.getValue().handle((Player) event.getWhoClicked(), event.getCurrentItem(), event.getSlot(), event.getClick());
+                                        break outer;
                                 }
-                        });
-                });
-
+                        }
+                }
         }
 }
