@@ -32,6 +32,7 @@ public abstract class MegaPaginatedGui extends MegaGui {
         public void setPage(int page) {
                 if (pagination.containsKey(getOwner())) pagination.replace(getOwner(), page);
                 else pagination.put(getOwner(), page);
+                getInventory().clear();
                 open();
         }
 
