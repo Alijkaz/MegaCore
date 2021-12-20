@@ -1,5 +1,6 @@
 package ir.jeykey.megacore.events;
 
+import ir.jeykey.megacore.MegaPlugin;
 import ir.jeykey.megacore.gui.MegaPaginatedGui;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,6 +10,6 @@ public class PlayerQuit implements Listener {
     @EventHandler
     public void handleQuit(PlayerQuitEvent e) {
         MegaPaginatedGui.getPagination().remove(e.getPlayer());
-
+        MegaPlugin.getRegisteredGuis().remove(e.getPlayer());
     }
 }
