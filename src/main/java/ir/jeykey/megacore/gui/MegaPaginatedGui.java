@@ -19,6 +19,7 @@ public abstract class MegaPaginatedGui extends MegaGui {
 
         public boolean nextPage() {
                 setPage(getPage() + 1);
+                update();
                 return true;
         }
 
@@ -27,6 +28,7 @@ public abstract class MegaPaginatedGui extends MegaGui {
                         return false;
                 } else {
                         setPage(getPage() - 1);
+                        update();
                         return true;
                 }
         }
@@ -34,7 +36,6 @@ public abstract class MegaPaginatedGui extends MegaGui {
         public void setPage(int page) {
                 if (pagination.containsKey(getOwner())) pagination.replace(getOwner(), page);
                 else pagination.put(getOwner(), page);
-                update();
         }
 
         public int getPage() {
