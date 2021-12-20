@@ -24,7 +24,6 @@ public abstract class MegaGui {
                 this.name = Common.colorize(name);
                 this.size = size;
                 this.owner = owner;
-                createInventory();
         }
 
         public abstract void setup();
@@ -57,9 +56,15 @@ public abstract class MegaGui {
         }
 
         public void open() {
+                createInventory();
                 setup();
                 register();
                 getOwner().openInventory(getInventory());
+        }
+
+        public void update() {
+                getInventory().clear();
+                setup();
         }
 
         public void close() {
