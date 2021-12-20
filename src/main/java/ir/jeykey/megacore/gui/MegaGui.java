@@ -24,6 +24,7 @@ public abstract class MegaGui {
                 this.name = Common.colorize(name);
                 this.size = size;
                 this.owner = owner;
+                createInventory();
         }
 
         public abstract void setup();
@@ -56,7 +57,6 @@ public abstract class MegaGui {
         }
 
         public void open() {
-                createInventory();
                 setup();
                 register();
                 getOwner().openInventory(getInventory());
@@ -76,7 +76,7 @@ public abstract class MegaGui {
         }
 
         public void createInventory() {
-                this.inventory = Bukkit.createInventory(null, size, getName());
+                this.inventory = Bukkit.createInventory(null, getSize(), getName());
         }
 
 }
