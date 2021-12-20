@@ -60,11 +60,11 @@ public abstract class MegaPlugin extends JavaPlugin {
 
                 // Logging MegaReports has been activated
                 Common.log(
-                        Common.repeat("&a&m=", 12, "&2"),
+                        Common.repeat("&a&m=", 18, "&2"),
                         "&a&l" + getDescription().getName() + " &aActivated",
                         "&a&lVersion: &2" + getDescription().getVersion(),
                         "&a&lTook: &2" + time+ " ms",
-                        Common.repeat("&a&m=", 12, "&2")
+                        Common.repeat("&a&m=", 18, "&2")
                 );
 
         }
