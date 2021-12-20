@@ -54,6 +54,10 @@ public abstract class MegaPaginatedGui extends MegaGui {
                 return getPage() == getLastPage();
         }
 
+        public boolean hasMorePages() {
+                return getPage() < getLastPage();
+        }
+
         public int getOffset() {
                 return (getPage() * getMaxItemsPerPage()) - (getMaxItemsPerPage() - 1);
         }
