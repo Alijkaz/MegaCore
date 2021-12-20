@@ -14,14 +14,15 @@ import java.util.HashMap;
 
 public abstract class MegaGui {
         @Getter private final String name;
+        @Getter private final int size;
         @Getter private final Player owner;
-        @Getter private final Inventory inventory;
+        @Getter private Inventory inventory;
         @Getter private final HashMap<ItemStack, HandleEvent> itemHandlers = new HashMap<>();
         @Getter @Setter private ItemStack filler;
 
         public MegaGui(String name, int size, Player owner) {
                 this.name = Common.colorize(name);
-                this.inventory = Bukkit.createInventory(null, size, getName());
+                this.size = size;
                 this.owner = owner;
         }
 
@@ -55,6 +56,7 @@ public abstract class MegaGui {
         }
 
         public void open() {
+                createInventory();
                 setup();
                 register();
                 getOwner().openInventory(getInventory());
@@ -71,6 +73,10 @@ public abstract class MegaGui {
                 } else {
                         MegaPlugin.getRegisteredGuis().replace(getOwner(), this);
                 }
+        }
+
+        public void createInventory() {
+                this.inventory = Bukkit.createInventory(null, size, getName());
         }
 
 }
