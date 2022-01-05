@@ -2,6 +2,7 @@ package ir.jeykey.megacore.config;
 
 import ir.jeykey.megacore.MegaPlugin;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
