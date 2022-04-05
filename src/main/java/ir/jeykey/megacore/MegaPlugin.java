@@ -40,13 +40,13 @@ public abstract class MegaPlugin extends JavaPlugin {
                 // Setting up config manager
                 configManager = new ConfigManager(this);
 
+                // Setting up bungee channel API
+                bungeeApi = BungeeChannelApi.of(this);
+
                 onPluginEnable();
 
                 // Disabling the plugin if it's disabled in the onPluinEnable
                 if (!isEnabled()) return;
-
-                // Setting up bungee channel API
-                bungeeApi = BungeeChannelApi.of(this);
 
                 // Registering core events
                 register(new InventoryClick());
