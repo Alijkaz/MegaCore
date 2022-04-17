@@ -6,7 +6,8 @@ import lombok.Setter;
 
 @Getter@Setter
 public abstract class MegaSubCommand {
-    private final String label;
+    @Getter
+    private final String name;
 
     @Getter @Setter
     private MegaCommand.CommandArgs args;
@@ -20,8 +21,8 @@ public abstract class MegaSubCommand {
     @Getter @Setter
     private boolean isPlayerCommand = true;
 
-    public MegaSubCommand(String label) {
-        this.label = label;
+    public MegaSubCommand(String name) {
+        this.name = name;
     }
 
     public void execute() {
