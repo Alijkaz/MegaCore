@@ -86,7 +86,6 @@ public abstract class MegaCommand extends Command {
 
             bukkitCommandMap.setAccessible(true);
             CommandMap commandMap = (CommandMap) bukkitCommandMap.get(Bukkit.getServer());
-            System.out.println(getName());
             commandMap.register(getName(), this);
         } catch(Exception e) {
             e.printStackTrace();
