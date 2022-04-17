@@ -52,21 +52,22 @@ public abstract class MegaCommand extends Command {
             return true;
         }
 
-        AtomicBoolean isSubCommand = new AtomicBoolean(false);
+        boolean isSubCommand = false;
         if (args.length > 0) {
-            subCommands.forEach((subCommand) -> {
+            for (MegaSubCommand subCommand : subCommands) {
                 if (args[0].equalsIgnoreCase(subCommand.getName())) {
                     subCommand.setArgs(getArgs().popFirst());
                     subCommand.setSender(getSender());
                     subCommand.execute();
-                    isSubCommand.set(true);
+                    isSubCommand = true;
+                    break;
                 }
-            });
+            }
         }
 
-        if (isSubCommand.get()) return true;
-
-        onCommand();
+        if (!isSubCommand) {
+            onCommand();
+        }
 
         return true;
     }
