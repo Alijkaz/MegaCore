@@ -55,7 +55,7 @@ public abstract class MegaCommand extends Command {
         AtomicBoolean isSubCommand = new AtomicBoolean(false);
         if (args.length > 0) {
             subCommands.forEach((subCommand) -> {
-                if (args[0].equalsIgnoreCase(subCommand.getLabel())) {
+                if (args[0].equalsIgnoreCase(getName())) {
                     subCommand.setArgs(getArgs().popFirst());
                     subCommand.setSender(getSender());
                     subCommand.execute();
@@ -86,7 +86,7 @@ public abstract class MegaCommand extends Command {
 
             bukkitCommandMap.setAccessible(true);
             CommandMap commandMap = (CommandMap) bukkitCommandMap.get(Bukkit.getServer());
-
+            System.out.println(getName());
             commandMap.register(getName(), this);
         } catch(Exception e) {
             e.printStackTrace();
