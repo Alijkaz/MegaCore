@@ -18,9 +18,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.Optional;
 
 public abstract class MegaPlugin extends JavaPlugin {
-        @Getter public static JavaPlugin instance;
+        private static Optional<MegaPlugin> instance;
         @Getter private static final HashMap<Player, MegaGui> registeredGuis = new HashMap<>();
         @Getter public static ConfigManager configManager;
         @Getter public static BungeeChannelApi bungeeApi;
@@ -35,7 +36,7 @@ public abstract class MegaPlugin extends JavaPlugin {
                 long start = System.currentTimeMillis();
 
                 // Assigning instance
-                instance = this;
+                instance = Optional.of(this);
 
                 // Setting up config manager
                 configManager = new ConfigManager(this);
@@ -89,26 +90,17 @@ public abstract class MegaPlugin extends JavaPlugin {
                 getServer().getPluginManager().registerEvents(listener, getInstance());
         }
 
-        public void register(Command command) {
-                try {
-                        final Field bukkitCommandMap = Bukkit.getServer().getClass().getDeclaredField("commandMap");
-
-                        bukkitCommandMap.setAccessible(true);
-                        CommandMap commandMap = (CommandMap) bukkitCommandMap.get(Bukkit.getServer());
-
-                        commandMap.register(instance.getName(), command);
-                } catch(Exception e) {
-                        e.printStackTrace();
-                }
-        }
-
         public abstract void onPluginEnable();
 
         public abstract void onPluginDisable();
 
         public static void disablePlugin(String... messages) {
                 Common.logPrefixed(messages);
-                Bukkit.getPluginManager().disablePlugin(instance);
+                Bukkit.getPluginManager().disablePlugin(getInstance());
+        }
+
+        public static MegaPlugin getInstance() {
+                return instance.orElseThrow(IllegalStateException::new);
         }
 
 }
