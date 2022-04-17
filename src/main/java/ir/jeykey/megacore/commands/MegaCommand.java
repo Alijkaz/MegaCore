@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class MegaCommand extends Command {
     @Getter
-    private String label;
+    private String usedLabel;
 
     @Getter
     private CommandArgs args;
@@ -38,9 +38,9 @@ public abstract class MegaCommand extends Command {
     }
 
     @Override
-    public boolean execute(CommandSender sender, String label, String[] args) {
+    public boolean execute(CommandSender sender, String usedLabel, String[] args) {
         this.args = new CommandArgs(args);
-        this.label = label;
+        this.usedLabel = usedLabel;
         this.sender = new MegaCommandSender(sender);
 
         if (isPlayerCommand() && !getSender().isPlayer()) return true;
@@ -71,9 +71,6 @@ public abstract class MegaCommand extends Command {
         return true;
     }
 
-
-
-
     public void addSubCommand(MegaSubCommand subCommand) {
         this.subCommands.add(subCommand);
     }
@@ -94,7 +91,7 @@ public abstract class MegaCommand extends Command {
 
     static class CommandArgs {
         @Getter
-        private String[] args;
+        private final String[] args;
 
         public CommandArgs(String[] args) {
             this.args = args;
