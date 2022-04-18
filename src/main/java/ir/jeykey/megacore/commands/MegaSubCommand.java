@@ -10,7 +10,7 @@ public abstract class MegaSubCommand {
     private final String name;
 
     @Getter @Setter
-    private MegaCommand.CommandArgs args;
+    private CommandArgs args;
 
     @Getter @Setter
     private MegaCommandSender sender;

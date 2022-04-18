@@ -10,9 +10,7 @@ import org.bukkit.command.CommandSender;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public abstract class MegaCommand extends Command {
@@ -87,33 +85,6 @@ public abstract class MegaCommand extends Command {
             commandMap.register(getName(), this);
         } catch(Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    static class CommandArgs {
-        @Getter
-        private final String[] args;
-
-        public CommandArgs(String[] args) {
-            this.args = args;
-        }
-
-        public boolean hasAny() {
-            return (this.args != null && this.args.length != 0);
-        }
-
-        public String get(int index) {
-            if (args.length > index) {
-                return args[index];
-            }
-            return null;
-        }
-
-        /**
-         * Returns a new CommandArgs instance without the first index
-         */
-        public CommandArgs popFirst() {
-            return new CommandArgs(Arrays.copyOfRange(args, 1, args.length));
         }
     }
 }
