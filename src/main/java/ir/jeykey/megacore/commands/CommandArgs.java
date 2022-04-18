@@ -37,11 +37,11 @@ public class CommandArgs {
      */
     public void executeOnArg(String arg, ExecuteOnArg onComplete) {
         if (get(0).equalsIgnoreCase(arg)) {
-            onComplete.execute();
+            onComplete.execute(popFirst());
         }
     }
 
     interface ExecuteOnArg {
-        void execute();
+        void execute(CommandArgs args);
     }
 }
