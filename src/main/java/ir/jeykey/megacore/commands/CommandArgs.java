@@ -36,6 +36,8 @@ public class CommandArgs {
      * @param onComplete The code that will be executed
      */
     public void executeOnArg(String arg, ExecuteOnArg onComplete) {
+        if (get(0) == null) return;
+        
         if (get(0).equalsIgnoreCase(arg)) {
             onComplete.execute(popFirst());
         }
