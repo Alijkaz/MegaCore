@@ -41,7 +41,7 @@ public class CommandArgs {
         }
     }
 
-    interface ExecuteOnArg {
+    public interface ExecuteOnArg {
         void execute(CommandArgs args);
     }
 }
